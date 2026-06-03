@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Cassandra ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+overflow:hidden;
+background:#000;
+}
+
+/* ============================= */
+/* WELCOME PAGE */
+/* ============================= */
+#welcomePage{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+
+background:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.7)),
+url('201220.jpeg');
+
+background-size:cover;
+background-position:center;
+z-index:10;
+transition:1s;
+}
+
+.welcome-card{
+padding:40px;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(15px);
+border-radius:30px;
+color:white;
+}
+
+.cassandra{
+font-family:'Dancing Script',cursive;
+font-size:3.5rem;
+color:#ff9bd4;
+}
+
+button{
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff4da6,#ff85c7);
+color:white;
+margin-top:20px;
+cursor:pointer;
+}
+
+/* ============================= */
+/* MESSAGE PAGE */
+/* ============================= */
+#messagePage{
+position:absolute;
+inset:0;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4,#ffd1ff);
+opacity:0;
+pointer-events:none;
+transition:1s;
+text-align:center;
+padding:20px;
+}
+
+.message-box{
+max-width:700px;
+color:white;
+}
+
+.typewriter{
+line-height:1.8;
+font-size:1.1rem;
+}
+
+/* ============================= */
+/* FLOATING EMOJIS */
+/* ============================= */
+.float{
+position:fixed;
+bottom:-50px;
+font-size:2rem;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-120vh) rotate(360deg);opacity:0;}
+}
+
+/* ============================= */
+/* GALLERY */
+/* ============================= */
+#gallery{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+display:none;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
+}
+
+.slide{
+display:none;
+max-width:90%;
+max-height:70vh;
+border-radius:20px;
+}
+
+video.slide{
+object-fit:cover;
+}
+
+/* ACTIVE */
+.active{
+display:block;
+animation:magic 1s;
+}
+
+/* MAGIC ANIMATION */
+@keyframes magic{
+0%{
+opacity:0;
+transform:scale(0.3) rotate(-30deg) translateY(100px);
+}
+50%{
+transform:scale(1.1) rotate(10deg);
+}
+100%{
+opacity:1;
+transform:scale(1) rotate(0);
+}
+}
+
+.controls{
+margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+<source src="rumogold_thicker_than_water_mp3_79473.mp3.mpeg" type="audio/mpeg">
+</audio>
+
+<!-- WELCOME -->
+<section id="welcomePage">
+<div class="welcome-card">
+<h1>🌙HEY BEAUTIFUL🥹🤍</h1>
+<div class="cassandra">Cassandra ❤️</div>
+<p>A special message for you 💕</p>
+<button onclick="openMessage()">Click Here 💖</button>
+</div>
+</section>
+
+<!-- MESSAGE -->
+<section id="messagePage">
+<div class="message-box">
+<h2 style="font-family:'Dancing Script';font-size:3rem;">For You ❤️</h2>
+<p class="typewriter" id="text"></p>
+
+<button onclick="openGallery()">Open Memories 📸</button>
+</div>
+</section>
+
+<!-- GALLERY -->
+<div id="gallery">
+
+<!-- VIDEO 1 -->
+<video class="slide active" muted loop>
+<source src="VID-20240129-WA0075.mp4" type="video/mp4">
+</video>
+
+<!-- IMAGES -->
+<img src="201220.jpeg" class="slide">
+<img src="27d79714ef9f428aa69b4fbfa34ebab5.jpg" class="slide">
+<img src="IMG-20231124-WA0011.jpg" class="slide">
+<img src="46d95c486cd74923915e8798536cdd05.jpg" class="slide">
+<img src="IMG-20240201-WA0018.jpg" class="slide">
+<img src="IMG-20240220-WA0021.jpg" class="slide">
+<img src="dailrem.png" class="slide">
+<img src="Screenshot_2024-08-11-20-55-31-842_com.whatsapp.jpg" class="slide">
+
+<!-- VIDEO 2 -->
+<video class="slide" muted loop>
+<source src="d63a8bf2fdee48c9bb5d9eb5ae525b8f.mp4" type="video/mp4">
+</video>
+
+<div class="controls">
+<button onclick="prevSlide()">⬅</button>
+<button onclick="nextSlide()">➡</button>
+<button onclick="closeGallery()">❌</button>
+</div>
+
+</div>
+
+<script>
+
+/* START MESSAGE */
+function openMessage(){
+document.getElementById("welcomePage").style.opacity="0";
+document.getElementById("welcomePage").style.pointerEvents="none";
+
+document.getElementById("messagePage").style.opacity="1";
+document.getElementById("messagePage").style.pointerEvents="all";
+
+document.getElementById("music").play();
+typeWriter();
+}
+
+/* TYPEWRITER */
+const msg = `There are people who make life beautiful…
+
+And you are one of them ❤️
+
+Your kindness, your smile, your energy…
+they make everything brighter.
+
+I appreciate you more than words can say 💖`;
+
+let i=0;
+function typeWriter(){
+if(i < msg.length){
+document.getElementById("text").innerHTML += msg.charAt(i);
+i++;
+setTimeout(typeWriter,30);
+}
+}
+
+/* FLOATING EMOJIS */
+const emojis=["❤️","💖","💕","💗","💞","💝","🥰"];
+
+function createEmoji(){
+let e=document.createElement("div");
+e.className="float";
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+e.style.left=Math.random()*100+"vw";
+e.style.animationDuration=(5+Math.random()*5)+"s";
+document.body.appendChild(e);
+setTimeout(()=>e.remove(),10000);
+}
+
+setInterval(createEmoji,300);
+
+/* GALLERY */
+let slideIndex=0;
+const slides=document.querySelectorAll(".slide");
+
+function showSlide(n){
+slides.forEach(s=>{
+s.classList.remove("active");
+if(s.tagName==="VIDEO") s.pause();
+});
+
+slides[n].classList.add("active");
+
+if(slides[n].tagName==="VIDEO") slides[n].play();
+}
+
+function nextSlide(){
+slideIndex=(slideIndex+1)%slides.length;
+showSlide(slideIndex);
+}
+
+function prevSlide(){
+slideIndex=(slideIndex-1+slides.length)%slides.length;
+showSlide(slideIndex);
+}
+
+setInterval(nextSlide,4000);
+
+function openGallery(){
+document.getElementById("gallery").style.display="flex";
+showSlide(slideIndex);
+}
+
+function closeGallery(){
+document.getElementById("gallery").style.display="none";
+}
+
+/* CLICK EMOJI BURST */
+document.body.addEventListener("click",()=>{
+for(let i=0;i<10;i++) createEmoji();
+});
+
+</script>
+
+</body>
+</html>
